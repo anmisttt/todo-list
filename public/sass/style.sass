@@ -1,0 +1,141 @@
+$purple: #603F83FF
+$dark-purple: #4e336b
+$ice: #C7D3D4FF
+
+*
+    box-sizing: border-box
+body
+    margin: 0
+    padding: 0
+    font-family: Roboto
+
+button, button:active, button:focus 
+    border: none
+    outline: none 
+    font-family: Roboto
+
+ul 
+    margin: 0
+    padding: 0
+li
+    list-style-type: none
+a
+    text-decoration: none
+    color: #000
+
+button
+    padding: 10px 20px
+    background-color:  $purple
+    font-size: 18px
+    text-transform: uppercase
+    color: #fff
+    &:hover
+        cursor: pointer
+        background-color:  $dark-purple
+
+header
+    height: 100px
+    padding: 0 20px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    .logo
+        font-size: 36px
+        font-weight: 900
+
+.tabs-block
+    height: 200px
+    padding: 20px
+    display: flex
+    align-items: flex-end
+    background-color: $dark-purple
+    ul
+        display: flex
+        width: 320px
+        justify-content: space-between
+        li.tabs-item 
+            font-size: 24px
+            padding-bottom: 10px
+            transition: 0.3s
+            &:hover
+                border-bottom: 1px solid #fff
+            &--active
+                border-bottom: 1px solid #fff
+            a
+                color: #fff
+.main-block
+    padding: 20px
+        
+.task-card
+    width: 300px
+    border: 3px solid $purple
+    padding: 10px
+    &_done
+        border-color: green
+    &_overdue
+        border-color: red
+    .top-part
+        display: flex
+        justify-content: space-between
+        align-items: center
+        margin-bottom: 10px
+        .card
+            &-title
+                font-weight: 900
+            &-actions
+                display: flex
+                justify-content: space-between
+                min-width: 80px
+                div
+                    width: 24px
+                    height: 24px
+                    padding: 3px
+                    border-radius: 50%
+                    cursor: pointer
+                .done-action
+                    background: center no-repeat url('../icons/done.svg') green
+                    background-size:  19px 19px
+                .edit-action
+                    background: center no-repeat url('../icons/edit.svg') yellow
+                    background-size:  18px 18px
+                .delete-action
+                    background: center no-repeat url('../icons/delete.svg') red
+                    background-size:  18px 18px
+    .card-description
+        margin-bottom: 10px
+            
+
+.modal 
+    background: $ice
+    border: 2px solid #d7dcdf
+    position: absolute
+    left: 50%
+    top: 20vh
+    width: 550px
+    margin-left: -225px
+    padding: 40px 40px 20px
+    .text
+        font-size: 18px
+        line-height: 22px
+        margin-bottom: 30px
+        text-align: center
+    form
+        input, textarea
+            display: block
+            padding: 10px
+            width: 100%
+            font-size: 15px
+            color: #252626
+            border: 2px solid #d7dcdf
+            background-color: #ffffff
+            border-radius: 10px
+            margin-bottom: 15px
+            font-family: Roboto
+        textarea
+            resize: none
+            margin-bottom: 20px
+        .modal__submit
+            display: flex
+            justify-content: center
+    button.modal__btn
+        margin: 0 auto

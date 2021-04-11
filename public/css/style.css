@@ -1,0 +1,224 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+}
+
+button, button:active, button:focus {
+  border: none;
+  outline: none;
+  font-family: Roboto;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #603F83FF;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #4e336b;
+}
+
+header {
+  height: 100px;
+  padding: 0 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .logo {
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.tabs-block {
+  height: 200px;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  background-color: #4e336b;
+}
+
+.tabs-block ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 320px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.tabs-block ul li.tabs-item {
+  font-size: 24px;
+  padding-bottom: 10px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.tabs-block ul li.tabs-item:hover {
+  border-bottom: 1px solid #fff;
+}
+
+.tabs-block ul li.tabs-item--active {
+  border-bottom: 1px solid #fff;
+}
+
+.tabs-block ul li.tabs-item a {
+  color: #fff;
+}
+
+.main-block {
+  padding: 20px;
+}
+
+.task-card {
+  width: 300px;
+  border: 3px solid #603F83FF;
+  padding: 10px;
+}
+
+.task-card_done {
+  border-color: green;
+}
+
+.task-card_overdue {
+  border-color: red;
+}
+
+.task-card .top-part {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+}
+
+.task-card .top-part .card-title {
+  font-weight: 900;
+}
+
+.task-card .top-part .card-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  min-width: 80px;
+}
+
+.task-card .top-part .card-actions div {
+  width: 24px;
+  height: 24px;
+  padding: 3px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.task-card .top-part .card-actions .done-action {
+  background: center no-repeat url("../icons/done.svg") green;
+  background-size: 19px 19px;
+}
+
+.task-card .top-part .card-actions .edit-action {
+  background: center no-repeat url("../icons/edit.svg") yellow;
+  background-size: 18px 18px;
+}
+
+.task-card .top-part .card-actions .delete-action {
+  background: center no-repeat url("../icons/delete.svg") red;
+  background-size: 18px 18px;
+}
+
+.task-card .card-description {
+  margin-bottom: 10px;
+}
+
+.modal {
+  background: #C7D3D4FF;
+  border: 2px solid #d7dcdf;
+  position: absolute;
+  left: 50%;
+  top: 20vh;
+  width: 550px;
+  margin-left: -225px;
+  padding: 40px 40px 20px;
+}
+
+.modal .text {
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.modal form input, .modal form textarea {
+  display: block;
+  padding: 10px;
+  width: 100%;
+  font-size: 15px;
+  color: #252626;
+  border: 2px solid #d7dcdf;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  font-family: Roboto;
+}
+
+.modal form textarea {
+  resize: none;
+  margin-bottom: 20px;
+}
+
+.modal form .modal__submit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal button.modal__btn {
+  margin: 0 auto;
+}
