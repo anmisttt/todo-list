@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
 import PropTypes from 'prop-types';
 import {nanoid} from 'nanoid'
-import {formatDate} from '../../utils/date'
+import {formatDate, isValidDate} from '../../utils/date'
 import moment from 'moment'
 
 const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}) => {
@@ -11,8 +11,9 @@ const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}) => {
     const descriptionRef = useRef();
     const dateRef = useRef();
     const [isActive, setActive] = useState(false);
+    
     const changeHandler = () => {
-        setActive(titleRef.current.value.length>0 && descriptionRef.current.value.length>0 && dateRef.current.value.length>0)
+        setActive(titleRef.current.value.length>0 && descriptionRef.current.value.length>0 && isValidDate(dateRef.current.value))
     }
 
     const handleSubmit = (evt) => {

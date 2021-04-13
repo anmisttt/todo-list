@@ -4,3 +4,7 @@ export const formatDate = (date) => {
   ];
     return `${new Date(date).getDate()} ${monthNames[new Date(date).getMonth()]}  ${new Date(date).getFullYear()}`
 }
+
+export const isValidDate = (date) => {
+  return !isNaN(new Date(date));
+}
