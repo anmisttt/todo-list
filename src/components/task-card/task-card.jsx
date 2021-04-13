@@ -4,12 +4,14 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action'
 import TaskAddingForm from '../../components/task-adding-form/task-adding-form'
 import {formatDate} from '../../utils/date'
+import moment from 'moment'
 
 const TaskCard = ({card, doneCard, deleteCard}) => {
     const [isEdit, setEdit] = useState(false)
     const closeEdit = () => {
         setEdit(false)
     }
+    const diffTime = moment(card.date).fromNow();
 
     return (
         <>        
@@ -17,6 +19,7 @@ const TaskCard = ({card, doneCard, deleteCard}) => {
         <div className={`task-card ${(card.status=='done') ? `task-card_done`: (card.status=='overdue') ? `task-card_overdue` : ``}`}>
             <div className="top-part">
                 <div className="card-title">{card.title}</div>
+                
                 <div className="card-actions">
                     {card.status!="done" && 
                     <>
@@ -28,9 +31,13 @@ const TaskCard = ({card, doneCard, deleteCard}) => {
                 </div>
             </div>
             <div className="card-description">{card.description}</div>
-            <div className="card-date">
-                End till <span>{formatDate(card.date)}</span>
+
+                <div className="card-date">
+                End till <span>{`${formatDate(card.date)} (${diffTime})`}</span>
             </div>
+
+           
+            
         </div>
         </>
     )
