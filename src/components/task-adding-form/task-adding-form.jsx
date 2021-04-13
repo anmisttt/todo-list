@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
 import PropTypes from 'prop-types';
 import {nanoid} from 'nanoid'
+import {formatDate} from '../../utils/date'
 
 const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}) => {
     const titleRef = useRef();
@@ -20,14 +21,14 @@ const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}) => {
             title: titleRef.current.value,
             description: descriptionRef.current.value,
             status: 'active',
-            date: dateRef.current.value
+            date: new Date(dateRef.current.value)
         }) :
         createCard({
             id: nanoid(),
             title: titleRef.current.value,
             description: descriptionRef.current.value,
             status: 'active',
-            date: dateRef.current.value
+            date: new Date(dateRef.current.value)
         })   
         handleClose()
       };
@@ -53,7 +54,7 @@ const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}) => {
                        
                     </div>
                     <div className="modal__field">
-                        <input ref = {dateRef} defaultValue={oldCard ? oldCard.title : ''} className="sign-in__input" type="textarea" placeholder="Введите дату в формате DD/MM/YYYY" name="card-title" id="card-title" />
+                        <input ref = {dateRef} defaultValue={oldCard ? formatDate(oldCard.date) : ''} className="sign-in__input" type="textarea" placeholder="Введите дедлайн в формате '1 January 2021'" name="card-title" id="card-title" />
                        
                     </div>
                 </div>                                                             
