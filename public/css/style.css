@@ -194,6 +194,19 @@ header .logo {
   font-weight: 900;
 }
 
+.done-block {
+  padding: 20px;
+}
+
+.done-block div {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.done-block div.chart-block {
+  float: right;
+}
+
 .modal {
   background: #C7D3D4FF;
   border: 2px solid #d7dcdf;

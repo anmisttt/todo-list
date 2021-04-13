@@ -5,12 +5,12 @@ import TaskCard from '../task-card/task-card'
 
 const CardList = ({cards}) => {
     return(
-        <>
+        <div className="main-block">
         {cards.map((el) => (
         <TaskCard key={el.id} card = {el}
         />
         ))
-}</>
+}</div>
       
     )}
 

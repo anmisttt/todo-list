@@ -23,11 +23,11 @@ const Tabs = () => {
       </ul>
     
   </div>
-  <div className="main-block">
+  
     {(activeTab === 0) && <TabsInProgress></TabsInProgress>}
     {(activeTab === 1) && <TabsDone></TabsDone>}
     {(activeTab === 2) && <TabsOverdue></TabsOverdue>}
-  </div>
+ 
   </React.Fragment>);
 };
 
