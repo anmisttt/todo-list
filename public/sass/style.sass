@@ -64,12 +64,18 @@ header
             a
                 color: #fff
 .main-block
-    padding: 20px
+    padding: 20px 15px
+    display: flex
+    flex-wrap: wrap
         
 .task-card
     width: 300px
     border: 3px solid $purple
+    margin: 5px
     padding: 10px
+    display: flex
+    flex-direction: column
+    justify-content: space-between
     &_done
         border-color: green
     &_overdue
@@ -85,12 +91,12 @@ header
             &-actions
                 display: flex
                 justify-content: space-between
-                min-width: 80px
                 div
                     width: 24px
                     height: 24px
                     padding: 3px
                     border-radius: 50%
+                    margin-left: 5px
                     cursor: pointer
                 .done-action
                     background: center no-repeat url('../icons/done.svg') green
@@ -103,6 +109,9 @@ header
                     background-size:  18px 18px
     .card-description
         margin-bottom: 10px
+    .card-date
+        span
+            font-weight: 900
             
 
 .modal 
@@ -114,6 +123,21 @@ header
     width: 550px
     margin-left: -225px
     padding: 40px 40px 20px
+    .closeText 
+        position: absolute
+        top: -30px
+        right: 30px
+        font-size: 14px
+        color: #fff
+        cursor: pointer
+        &:after 
+            content: '+'
+            font-size: 30px
+            display: block
+            position: absolute
+            top: -10.5px
+            transform: rotate(45deg)
+            right: -25px
     .text
         font-size: 18px
         line-height: 22px
@@ -132,6 +156,7 @@ header
             margin-bottom: 15px
             font-family: Roboto
         textarea
+            height: 200px
             resize: none
             margin-bottom: 20px
         .modal__submit

@@ -1,10 +1,21 @@
 import React from 'react'
-import TaskCard from '../task-card/task-card'
+import CardList from '../card-list/card-list'
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-const TabsInProgress = () => {
+const TabsInProgress = ({filteredCards}) => {
     return (
-        <TaskCard></TaskCard>
+       <CardList cards={filteredCards}></CardList>
     )
 }
 
-export default TabsInProgress
+TabsInProgress.propTypes = () => ({
+    filteredCards: PropTypes.array.isRequired
+})
+
+const mapStateToProps = (state) => ({
+    filteredCards: state.cards.filter((card) => card.status==="active")
+})
+
+export {TabsInProgress}
+export default connect(mapStateToProps, null)(TabsInProgress)
