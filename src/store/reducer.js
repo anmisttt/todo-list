@@ -33,7 +33,7 @@ const reducer = (state=initialState, action) => {
             const today = new Date();
             return {
                     cards: state.cards.map(card => {
-                    card.status = (moment(today).isAfter(moment(card.date))) ? 'overdue' : card.status
+                    card.status = (card.status === 'done' ? 'done' : (moment(today).isAfter(moment(card.date))) ? 'overdue' : 'active')
                     return card
                 })
             }

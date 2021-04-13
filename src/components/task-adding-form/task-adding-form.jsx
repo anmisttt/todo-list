@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
 import PropTypes from 'prop-types';
@@ -10,9 +10,13 @@ const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}) => {
     const titleRef = useRef();
     const descriptionRef = useRef();
     const dateRef = useRef();
+    const [isActive, setActive] = useState(false);
+    const changeHandler = () => {
+        setActive(titleRef.current.value.length>0 && descriptionRef.current.value.length>0 && dateRef.current.value.length>0)
+    }
 
     const handleSubmit = (evt) => {
-        evt.preventDefault();
+        evt.preventDefault()
         
         const newDate = dateRef.current.value
 
@@ -48,20 +52,24 @@ const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}) => {
             <form action="#" className="modal__form" onSubmit={handleSubmit}>
                 <div className="modal__fields">
                     <div className="modal__field">
-                        <input ref = {titleRef} defaultValue={oldCard ? oldCard.title : ''} className="sign-in__input" type="textarea" placeholder="Введите название" name="card-title" id="card-title" />
+                        <input ref = {titleRef} defaultValue={oldCard ? oldCard.title : ''} className="sign-in__input" type="textarea" placeholder="Введите название" name="card-title" id="card-title" onChange={changeHandler}/>
                        
                     </div>
                     <div className="modal__field">
-                        <textarea ref = {descriptionRef} defaultValue={oldCard ? oldCard.description : ''} className="sign-in__input" type="textarea" placeholder="Введите описание" name="card-description" id="card-description" />
+                        <textarea ref = {descriptionRef} defaultValue={oldCard ? oldCard.description : ''} className="sign-in__input" type="textarea" placeholder="Введите описание" name="card-description" id="card-description" onChange={changeHandler}/>
                        
                     </div>
                     <div className="modal__field">
-                        <input ref = {dateRef} defaultValue={oldCard ? formatDate(oldCard.date) : ''} className="sign-in__input" type="textarea" placeholder="Введите дедлайн в формате '1 January 2021'" name="card-title" id="card-title" />
+                        <input ref = {dateRef} defaultValue={oldCard ? formatDate(oldCard.date) : ''} className="sign-in__input" type="textarea" placeholder="Введите дедлайн в формате '1 January 2021'" name="card-title" id="card-title" onChange={changeHandler}/>
                        
                     </div>
                 </div>                                                             
                 <div className="modal__submit">
-              <button className="modal__btn" type="submit">{oldCard ? 'Изменить' :  'Создать'}</button>
+                    {isActive ? 
+                    <button className="modal__btn" type="submit">{oldCard ? 'Изменить' :  'Создать'}</button> :
+                    <button className="modal__btn" type="submit" disabled>{oldCard ? 'Изменить' :  'Создать'}</button>
+                    }
+              
             </div>              
             </form>
         </div>            
