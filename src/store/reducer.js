@@ -1,5 +1,6 @@
 import {ActionType} from './action'
 import cards from '../mocks/cards.js'
+import moment from 'moment'
 
 const initialState = {
     cards: cards
@@ -28,6 +29,14 @@ const reducer = (state=initialState, action) => {
             return {
                 cards: [...state.cards.slice(0,cardEditIndex), action.payload, ...state.cards.slice(cardEditIndex+1)]
             };
+        case ActionType.OVERDUE_CARDS:
+            const today = new Date();
+            return {
+                    cards: state.cards.map(card => {
+                    card.status = (moment(today).isAfter(moment(card.date))) ? 'overdue' : card.status
+                    return card
+                })
+            }
     }
     return state;
 }

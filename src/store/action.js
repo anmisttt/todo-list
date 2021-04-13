@@ -2,7 +2,8 @@ export const ActionType = {
     CREATE_CARD: 'createCard',
     DELETE_CARD: 'deleteCard',
     EDIT_CARD: 'editCard',
-    DONE_CARD: 'doneCard'
+    DONE_CARD: 'doneCard',
+    OVERDUE_CARDS: 'overdueCards'
 }
 
 export const ActionCreator = {
@@ -21,5 +22,8 @@ export const ActionCreator = {
     doneCard: (cardId) => ({
         type: ActionType.DONE_CARD,
         payload: cardId
+    }),
+    overdueCards: () => ({
+        type: ActionType.OVERDUE_CARDS
     })
 }

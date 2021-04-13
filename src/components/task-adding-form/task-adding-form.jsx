@@ -4,31 +4,33 @@ import {ActionCreator} from '../../store/action';
 import PropTypes from 'prop-types';
 import {nanoid} from 'nanoid'
 import {formatDate} from '../../utils/date'
+import moment from 'moment'
 
 const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}) => {
     const titleRef = useRef();
     const descriptionRef = useRef();
     const dateRef = useRef();
 
-    console.log('lkjlkj')
-
     const handleSubmit = (evt) => {
         evt.preventDefault();
+        
+        const newDate = dateRef.current.value
+
+        const data = {
+            title: titleRef.current.value,
+            description: descriptionRef.current.value,
+            status: (moment(newDate).isAfter(moment(new Date()))) ? 'active' : 'overdue',
+            date: new Date(newDate)
+        }
         
         oldCard ? 
         editCard({
             id: oldCard.id,
-            title: titleRef.current.value,
-            description: descriptionRef.current.value,
-            status: 'active',
-            date: new Date(dateRef.current.value)
+            ...data
         }) :
         createCard({
             id: nanoid(),
-            title: titleRef.current.value,
-            description: descriptionRef.current.value,
-            status: 'active',
-            date: new Date(dateRef.current.value)
+            ...data
         })   
         handleClose()
       };
@@ -73,6 +75,7 @@ TaskAddingForm.propTypes = {
     editCard: PropTypes.func.isRequired,
     handleClose: PropTypes.func.isRequired
 }
+
 
 const mapDispatchToProps = (dispatch) => ({
     createCard(cardData) {
