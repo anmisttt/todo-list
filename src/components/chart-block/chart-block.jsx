@@ -18,7 +18,7 @@ const ChartBlock = ({cards}) => {
         'November',
         'December'
       ];
-      const dataSet = labels.map((_label, i) => cards.filter(card => new Date(card.date).getMonth()===i).length)
+      const dataSet = labels.map((_label, i) => cards.filter(card => new Date(card.endDate).getMonth()===i).length)
       const data = {
         labels: labels,
         datasets: [{

@@ -207,6 +207,17 @@ header .logo {
   float: right;
 }
 
+.sort-block {
+  padding: 20px 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.sort-block .sort-text {
+  margin-right: 10px;
+}
+
 .modal {
   background: #C7D3D4FF;
   border: 2px solid #d7dcdf;

@@ -5,6 +5,7 @@ import TabsOverdue from '../tabs-overdue/tabs-overdue';
 import {connect} from 'react-redux'
 import {ActionCreator} from '../../store/action'
 import PropTypes from 'prop-types'
+import Sort from '../sort/sort';
 
 const Tabs = ({overdueCards}) => {
   const [activeTab, setActiveTab] = useState(0);
@@ -28,6 +29,8 @@ const Tabs = ({overdueCards}) => {
       </ul>
     
   </div>
+  
+    <Sort></Sort>
   
     {(activeTab === 0) && <TabsInProgress></TabsInProgress>}
     {(activeTab === 1) && <TabsDone></TabsDone>}

@@ -11,7 +11,7 @@ const TaskCard = ({card, doneCard, deleteCard}) => {
     const closeEdit = () => {
         setEdit(false)
     }
-    const diffTime = moment(card.date).fromNow();
+    const diffTime = moment(card.endDate).fromNow();
 
     return (
         <>        
@@ -33,7 +33,7 @@ const TaskCard = ({card, doneCard, deleteCard}) => {
             <div className="card-description">{card.description}</div>
 
                 <div className="card-date">
-                End till <span>{`${formatDate(card.date)} (${diffTime})`}</span>
+                End till <span>{`${formatDate(card.endDate)} (${diffTime})`}</span>
             </div>
 
            

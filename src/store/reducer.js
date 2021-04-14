@@ -1,6 +1,7 @@
 import {ActionType} from './action'
 import cards from '../mocks/cards.js'
 import moment from 'moment'
+import {sordDates} from '../utils/date'
 
 const initialState = {
     cards: cards
@@ -33,9 +34,17 @@ const reducer = (state=initialState, action) => {
             const today = new Date();
             return {
                     cards: state.cards.map(card => {
-                    card.status = (card.status === 'done' ? 'done' : (moment(today).isAfter(moment(card.date))) ? 'overdue' : 'active')
+                    card.status = (card.status === 'done' ? 'done' : (moment(today).isAfter(moment(card.endDate))) ? 'overdue' : 'active')
                     return card
                 })
+            }
+        case ActionType.SORT_CARDS:
+            return {
+                cards: (action.payload=='default') ?
+                state.cards.sort((card1, card2) => sordDates(card1.startDate, card2.startDate)) :
+                (action.payload=='dateUp') ?
+                state.cards.sort((card1, card2) => sordDates(card1.endDate, card2.endDate)) :
+                state.cards.sort((card1, card2) => sordDates(card2.endDate, card1.endDate))
             }
     }
     return state;

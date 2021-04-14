@@ -31,10 +31,12 @@ const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}) => {
         oldCard ? 
         editCard({
             id: oldCard.id,
+            startDate: oldCard.startDate,
             ...data
         }) :
         createCard({
             id: nanoid(),
+            startDate: new Date(),
             ...data
         })   
         handleClose()
@@ -61,7 +63,7 @@ const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}) => {
                        
                     </div>
                     <div className="modal__field">
-                        <input ref = {dateRef} defaultValue={oldCard ? formatDate(oldCard.date) : ''} className="sign-in__input" type="textarea" placeholder="Введите дедлайн в формате '1 January 2021'" name="card-title" id="card-title" onChange={changeHandler}/>
+                        <input ref = {dateRef} defaultValue={oldCard ? formatDate(oldCard.endDate) : ''} className="sign-in__input" type="textarea" placeholder="Введите дедлайн в формате '1 January 2021'" name="card-title" id="card-title" onChange={changeHandler}/>
                        
                     </div>
                 </div>                                                             

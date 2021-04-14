@@ -3,7 +3,8 @@ export const ActionType = {
     DELETE_CARD: 'deleteCard',
     EDIT_CARD: 'editCard',
     DONE_CARD: 'doneCard',
-    OVERDUE_CARDS: 'overdueCards'
+    OVERDUE_CARDS: 'overdueCards',
+    SORT_CARDS: 'sortCards'
 }
 
 export const ActionCreator = {
@@ -25,5 +26,9 @@ export const ActionCreator = {
     }),
     overdueCards: () => ({
         type: ActionType.OVERDUE_CARDS
+    }),
+    sortCards: (sortType) => ({
+        type: ActionType.SORT_CARDS,
+        payload: sortType
     })
 }
