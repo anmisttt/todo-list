@@ -4,10 +4,9 @@ import TabsDone from '../tabs-done/tabs-done';
 import TabsOverdue from '../tabs-overdue/tabs-overdue';
 import {connect} from 'react-redux'
 import {ActionCreator} from '../../store/action'
-import PropTypes from 'prop-types'
 import Sort from '../sort/sort';
 
-const Tabs = ({overdueCards}) => {
+const Tabs = ({overdueCards}: Props) => {
   const [activeTab, setActiveTab] = useState(0);
 
   const tabsTitles = [`In Progress`, `Done`, `Overdue`];
@@ -39,11 +38,11 @@ const Tabs = ({overdueCards}) => {
   </React.Fragment>);
 };
 
-Tabs.propTypes = {
-  overdueCards: PropTypes.func.isRequired
+interface Props {
+  overdueCards: () => void
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Function) => ({
   overdueCards() {
     dispatch(ActionCreator.overdueCards)
   }

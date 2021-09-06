@@ -1,10 +1,10 @@
 import React from 'react'
 import CardList from '../card-list/card-list'
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import ChartBlock from '../chart-block/chart-block'
+import { Card, State } from '../../constants';
 
-const TabsDone = ({filteredCards}) => {
+const TabsDone = ({filteredCards}: Props) => {
     return (
         <div className="done-block">
        <CardList cards={filteredCards}></CardList>
@@ -13,12 +13,12 @@ const TabsDone = ({filteredCards}) => {
     )
 }
 
-TabsDone.propTypes = () => ({
-    filteredCards: PropTypes.array.isRequired
-})
+interface Props {
+    filteredCards: Card[]
+}
 
-const mapStateToProps = (state) => ({
-    filteredCards: state.cards.filter((card) => card.status==="done")
+const mapStateToProps = (state: State) => ({
+    filteredCards: state.cards.filter((card: Card) => card.status==="done")
 })
 
 export {TabsDone}

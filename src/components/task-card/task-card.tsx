@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action'
-import TaskAddingForm from '../../components/task-adding-form/task-adding-form'
+import { Dispatch } from '../../store/store';
+import TaskAddingForm from '../task-adding-form/task-adding-form'
 import {formatDate} from '../../utils/date'
+import {Card} from '../../constants'
 import moment from 'moment'
 
-const TaskCard = ({card, doneCard, deleteCard}) => {
+const TaskCard = ({card, doneCard, deleteCard}: Props) => {
     const [isEdit, setEdit] = useState(false)
     const closeEdit = () => {
         setEdit(false)
@@ -43,20 +44,20 @@ const TaskCard = ({card, doneCard, deleteCard}) => {
     )
 }
 
-TaskCard.propTypes = {
-    card: PropTypes.object.isRequired,
-    doneCard: PropTypes.func.isRequired,
-    deleteCard: PropTypes.func.isRequired
+interface Props {
+    card: Card,
+    doneCard: (id: number) => void,
+    deleteCard: (id: number) => void
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    doneCard(cardId) {
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    doneCard(cardId: number) {
         dispatch(ActionCreator.doneCard(cardId))
     },
-    deleteCard(cardId) {
+    deleteCard(cardId: number) {
         dispatch(ActionCreator.deleteCard(cardId))
     }
 })
 
 export {TaskCard}
-export default connect(null, mapDispatchToProps)(TaskCard)
+export default connect<Props>(null, mapDispatchToProps)(TaskCard)

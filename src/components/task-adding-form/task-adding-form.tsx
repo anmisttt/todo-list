@@ -1,31 +1,30 @@
 import React, {useRef, useState} from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
-import PropTypes from 'prop-types';
 import {nanoid} from 'nanoid'
 import {formatDate, isValidDate} from '../../utils/date'
 import moment from 'moment'
+import { Card } from '../../constants';
+import { Dispatch } from '../../store/store';
 
-const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}) => {
-    const titleRef = useRef();
-    const descriptionRef = useRef();
-    const dateRef = useRef();
+const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}: Props) => {
+    const titleRef = React.useRef<HTMLInputElement>(null!);
+    const descriptionRef = React.useRef<HTMLTextAreaElement>(null!);
+    const dateRef = React.useRef<HTMLInputElement>(null!);
     const [isActive, setActive] = useState(false);
     
     const changeHandler = () => {
         setActive(titleRef.current.value.length>0 && descriptionRef.current.value.length>0 && isValidDate(dateRef.current.value))
     }
 
-    const handleSubmit = (evt) => {
-        evt.preventDefault()
-        
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {        
         const newDate = dateRef.current.value
 
         const data = {
             title: titleRef.current.value,
             description: descriptionRef.current.value,
             status: (moment(newDate).isAfter(moment(new Date()))) ? 'active' : 'overdue',
-            date: new Date(newDate)
+            endDate: new Date(newDate)
         }
         
         oldCard ? 
@@ -59,7 +58,7 @@ const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}) => {
                        
                     </div>
                     <div className="modal__field">
-                        <textarea ref = {descriptionRef} defaultValue={oldCard ? oldCard.description : ''} className="sign-in__input" type="textarea" placeholder="Введите описание" name="card-description" id="card-description" onChange={changeHandler}/>
+                        <textarea ref = {descriptionRef} defaultValue={oldCard ? oldCard.description : ''} className="sign-in__input" placeholder="Введите описание" name="card-description" id="card-description" onChange={changeHandler}/>
                        
                     </div>
                     <div className="modal__field">
@@ -80,22 +79,22 @@ const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}) => {
     )
 }
 
-TaskAddingForm.propTypes = {
-    oldCard: PropTypes.object,
-    createCard: PropTypes.func.isRequired,
-    editCard: PropTypes.func.isRequired,
-    handleClose: PropTypes.func.isRequired
+interface Props {
+    oldCard: Card,
+    createCard: (card: Card) => void,
+    editCard: (card: Card) => void,
+    handleClose: () => void
 }
 
 
-const mapDispatchToProps = (dispatch) => ({
-    createCard(cardData) {
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    createCard(cardData: Card) {
       dispatch(ActionCreator.createCard(cardData));
     },
-    editCard(cardData) {
-        dispatch(ActionCreator.editCard(cardData));
+    editCard(cardData: Card) {
+        dispatch(ActionCreator.editCard(cardData.id));
       }
   });
 
 export {TaskAddingForm}
-export default connect(null, mapDispatchToProps)(TaskAddingForm)
+export default connect<Props>(null, mapDispatchToProps)(TaskAddingForm)

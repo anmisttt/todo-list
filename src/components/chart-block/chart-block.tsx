@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {HorizontalBar} from 'react-chartjs-2';
+import { Card } from '../../constants';
 
-const ChartBlock = ({cards}) => {
+const ChartBlock = ({cards}: Props) => {
   
     const labels = [
         'January',
@@ -41,8 +41,8 @@ const ChartBlock = ({cards}) => {
     )
 }
 
-ChartBlock.propTypes = {
-    cards: PropTypes.array.isRequired
+interface Props {
+    cards: Card[]
 }
 
 export default ChartBlock

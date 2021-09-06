@@ -1,5 +1,5 @@
 import {ActionType} from './action'
-import cards from '../mocks/cards.js'
+import cards from '../mocks/cards'
 import moment from 'moment'
 import {sordDates} from '../utils/date'
 

@@ -1,3 +1,5 @@
+import { Card } from '../constants';
+
 export const ActionType = {
     CREATE_CARD: 'createCard',
     DELETE_CARD: 'deleteCard',
@@ -8,26 +10,26 @@ export const ActionType = {
 }
 
 export const ActionCreator = {
-    createCard: (card) => ({
+    createCard: (card: Card) => ({
         type: ActionType.CREATE_CARD,
         payload: card
     }),
-    deleteCard: (cardId) => ({
+    deleteCard: (cardId: number) => ({
         type: ActionType.DELETE_CARD,
         payload: cardId
     }),
-    editCard: (cardId) => ({
+    editCard: (cardId: string | number) => ({
         type: ActionType.EDIT_CARD,
         payload: cardId
     }),
-    doneCard: (cardId) => ({
+    doneCard: (cardId: number) => ({
         type: ActionType.DONE_CARD,
         payload: cardId
     }),
     overdueCards: () => ({
         type: ActionType.OVERDUE_CARDS
     }),
-    sortCards: (sortType) => ({
+    sortCards: (sortType: string) => ({
         type: ActionType.SORT_CARDS,
         payload: sortType
     })

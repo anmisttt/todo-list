@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import TaskCard from '../task-card/task-card'
+import { Card } from '../../constants';
 
-const CardList = ({cards}) => {
+const CardList = ({cards}: Props) => {
     return(
         <div className="main-block">
-        {cards.map((el) => (
+        {cards.map((el: Card) => (
         <TaskCard key={el.id} card = {el}
         />
         ))
@@ -14,8 +13,8 @@ const CardList = ({cards}) => {
       
     )}
 
-CardList.propTypes = {
-    cards: PropTypes.array.isRequired
+interface Props {
+    cards: Card[]
 }
 
 

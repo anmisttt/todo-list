@@ -1,10 +1,10 @@
 import React, {useRef} from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {ActionCreator} from '../../store/action'
 
-const Sort = ({sortHandler}) => {
-    const sortRef = useRef();
+const Sort = ({sortHandler}: Props) => {
+    const sortRef = useRef<HTMLSelectElement>(null!)
+
 
     return(
         <div className="sort-block">
@@ -20,12 +20,12 @@ const Sort = ({sortHandler}) => {
     )
 }
 
-Sort.propTypes = {
-    sortHandler: PropTypes.func.isRequired
+interface Props {
+    sortHandler: (x: string) => void
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    sortHandler(sortType) {
+const mapDispatchToProps = (dispatch: Function) => ({
+    sortHandler(sortType: string) {
         dispatch(ActionCreator.sortCards(sortType))
     }
 })
