@@ -18,7 +18,7 @@ export const ActionCreator = {
         type: ActionType.DELETE_CARD,
         payload: cardId
     }),
-    editCard: (cardId: string | number) => ({
+    editCard: (cardId: number) => ({
         type: ActionType.EDIT_CARD,
         payload: cardId
     }),

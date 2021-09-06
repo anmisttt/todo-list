@@ -6,6 +6,7 @@ import TaskAddingForm from '../task-adding-form/task-adding-form'
 import {formatDate} from '../../utils/date'
 import {Card} from '../../constants'
 import moment from 'moment'
+import { AnyAction } from '@reduxjs/toolkit';
 
 const TaskCard = ({card, doneCard, deleteCard}: Props) => {
     const [isEdit, setEdit] = useState(false)
@@ -17,7 +18,7 @@ const TaskCard = ({card, doneCard, deleteCard}: Props) => {
     return (
         <>        
         {isEdit && <TaskAddingForm handleClose={closeEdit} oldCard={card}/>}
-        <div className={`task-card ${(card.status=='done') ? `task-card_done`: (card.status=='overdue') ? `task-card_overdue` : ``}`}>
+        <div className={`task-card ${(card.status=='DONE') ? `task-card_done`: (card.status=='OVERDUE') ? `task-card_overdue` : ``}`}>
             <div className="top-part">
                 <div className="card-title">{card.title}</div>
                 
@@ -44,13 +45,18 @@ const TaskCard = ({card, doneCard, deleteCard}: Props) => {
     )
 }
 
-interface Props {
-    card: Card,
+interface OwnProps {
+    card: Card
+}
+
+interface DispatchProps {
     doneCard: (id: number) => void,
     deleteCard: (id: number) => void
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+type Props = DispatchProps & OwnProps
+
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): DispatchProps => ({
     doneCard(cardId: number) {
         dispatch(ActionCreator.doneCard(cardId))
     },
@@ -60,4 +66,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 })
 
 export {TaskCard}
-export default connect<Props>(null, mapDispatchToProps)(TaskCard)
+export default connect<{}, DispatchProps, OwnProps>(null, mapDispatchToProps)(TaskCard)

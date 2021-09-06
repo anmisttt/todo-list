@@ -6,6 +6,8 @@ import {formatDate, isValidDate} from '../../utils/date'
 import moment from 'moment'
 import { Card } from '../../constants';
 import { Dispatch } from '../../store/store';
+import {CardStatuses} from '../../constants'
+import { AnyAction } from 'redux';
 
 const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}: Props) => {
     const titleRef = React.useRef<HTMLInputElement>(null!);
@@ -23,8 +25,8 @@ const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}: Props) => 
         const data = {
             title: titleRef.current.value,
             description: descriptionRef.current.value,
-            status: (moment(newDate).isAfter(moment(new Date()))) ? 'active' : 'overdue',
-            endDate: new Date(newDate)
+            status: (moment(newDate).isAfter(moment(new Date()))) ? CardStatuses.IN_PROGRESS : CardStatuses.OVERDUE,
+            endDate: new Date(newDate).toString()
         }
         
         oldCard ? 
@@ -34,8 +36,8 @@ const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}: Props) => 
             ...data
         }) :
         createCard({
-            id: nanoid(),
-            startDate: new Date(),
+            id: +nanoid(),
+            startDate: new Date().toString(),
             ...data
         })   
         handleClose()
@@ -79,15 +81,20 @@ const TaskAddingForm = ({createCard, editCard, handleClose, oldCard}: Props) => 
     )
 }
 
-interface Props {
-    oldCard: Card,
-    createCard: (card: Card) => void,
-    editCard: (card: Card) => void,
+interface OwnProps {
+    oldCard?: Card,
     handleClose: () => void
 }
 
+interface DispatchProps {
+    createCard: (card: Card) => void,
+    editCard: (card: Card) => void
+}
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+type Props = DispatchProps & OwnProps
+
+
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): DispatchProps => ({
     createCard(cardData: Card) {
       dispatch(ActionCreator.createCard(cardData));
     },
@@ -97,4 +104,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   });
 
 export {TaskAddingForm}
-export default connect<Props>(null, mapDispatchToProps)(TaskAddingForm)
+export default connect<{}, DispatchProps, OwnProps>(null, mapDispatchToProps)(TaskAddingForm)

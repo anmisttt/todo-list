@@ -2,12 +2,14 @@ import {ActionType} from './action'
 import cards from '../mocks/cards'
 import moment from 'moment'
 import {sordDates} from '../utils/date'
+import { CardStatuses } from '../constants'
+import { PayloadAction } from '@reduxjs/toolkit'
 
 const initialState = {
     cards: cards
 }
 
-const reducer = (state=initialState, action) => {
+const reducer = (state=initialState, action:PayloadAction<any>) => {
     switch (action.type) {
         case ActionType.CREATE_CARD:
             return {
@@ -34,7 +36,7 @@ const reducer = (state=initialState, action) => {
             const today = new Date();
             return {
                     cards: state.cards.map(card => {
-                    card.status = (card.status === 'done' ? 'done' : (moment(today).isAfter(moment(card.endDate))) ? 'overdue' : 'active')
+                    card.status = (card.status === CardStatuses.DONE ? CardStatuses.DONE : (moment(today).isAfter(moment(card.endDate))) ? CardStatuses.OVERDUE : CardStatuses.IN_PROGRESS)
                     return card
                 })
             }

@@ -1,15 +1,12 @@
 import React, {useState} from 'react';
-import TabsInProgress from '../tabs-in-progress/tabs-in-progress';
-import TabsDone from '../tabs-done/tabs-done';
-import TabsOverdue from '../tabs-overdue/tabs-overdue';
+import CardList from '../card-list/card-list'
 import {connect} from 'react-redux'
 import {ActionCreator} from '../../store/action'
 import Sort from '../sort/sort';
+import { CardStatuses } from '../../constants';
 
-const Tabs = ({overdueCards}: Props) => {
-  const [activeTab, setActiveTab] = useState(0);
-
-  const tabsTitles = [`In Progress`, `Done`, `Overdue`];
+const Tabs = ({overdueCards}: DispatchProps) => {
+  const [activeTab, setActiveTab] = useState(Object.keys(CardStatuses)[0]);
 
   () => overdueCards();
 
@@ -17,12 +14,12 @@ const Tabs = ({overdueCards}: Props) => {
   <React.Fragment>
   <div className="tabs-block">
       <ul>
-        {tabsTitles.map((tab, i) => (
-          <li key={i} className={(activeTab === i) ? `tabs-item tabs-item--active` : `tabs-item`}>
+        {Object.keys(CardStatuses).map((tab) => (
+          <li key={tab} className={`tabs-item ${(activeTab === tab) ? 'tabs-item--active' : ''}`}>
             <a href="#" className="tabs-item__link" onClick={(evt)=>{
               evt.preventDefault();
-              setActiveTab(i);
-            }}>{tab}</a>
+              setActiveTab(tab);
+            }}>{CardStatuses[tab]}</a>
           </li>
         ))}
       </ul>
@@ -30,15 +27,12 @@ const Tabs = ({overdueCards}: Props) => {
   </div>
   
     <Sort></Sort>
-  
-    {(activeTab === 0) && <TabsInProgress></TabsInProgress>}
-    {(activeTab === 1) && <TabsDone></TabsDone>}
-    {(activeTab === 2) && <TabsOverdue></TabsOverdue>}
+    <CardList tabStatus={CardStatuses[activeTab]}></CardList>
  
   </React.Fragment>);
 };
 
-interface Props {
+interface DispatchProps {
   overdueCards: () => void
 }
 

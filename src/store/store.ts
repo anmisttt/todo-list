@@ -7,5 +7,7 @@ export const store = createStore(
     composeWithDevTools()
 )
 
-export type Dispatch = typeof store.dispatch;
-export type State = ReturnType<typeof store.getState>
+export interface Dispatch<A> {
+    <T extends A>(action: T): T
+  }
+export type IState = ReturnType<typeof store.getState>

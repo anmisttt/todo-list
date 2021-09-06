@@ -1,13 +1,13 @@
 import moment from 'moment'
 
-export const formatDate = (date: string | Date) => {
+export const formatDate = (date: string) => {
     const monthNames = [`January`, `February`, `March`, `April`, `May`, `June`,
     `July`, `August`, `September`, `October`, `November`, `December`
   ];
     return `${new Date(date).getDate()} ${monthNames[new Date(date).getMonth()]}  ${new Date(date).getFullYear()}`
 }
 
-export const isValidDate = (date: string | Date) => {
+export const isValidDate = (date: string) => {
   return !!(new Date(date));
 }
 

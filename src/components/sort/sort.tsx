@@ -2,7 +2,7 @@ import React, {useRef} from 'react'
 import {connect} from 'react-redux'
 import {ActionCreator} from '../../store/action'
 
-const Sort = ({sortHandler}: Props) => {
+const Sort = ({sortHandler}: DispatchProps) => {
     const sortRef = useRef<HTMLSelectElement>(null!)
 
 
@@ -20,7 +20,7 @@ const Sort = ({sortHandler}: Props) => {
     )
 }
 
-interface Props {
+interface DispatchProps {
     sortHandler: (x: string) => void
 }
 
@@ -31,4 +31,4 @@ const mapDispatchToProps = (dispatch: Function) => ({
 })
 
 export {Sort}
-export default connect(null, mapDispatchToProps)(Sort)
+export default connect<{}, DispatchProps, {}>(null, mapDispatchToProps)(Sort)

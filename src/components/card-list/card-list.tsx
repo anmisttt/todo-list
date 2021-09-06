@@ -1,22 +1,46 @@
 import React from 'react';
 import TaskCard from '../task-card/task-card'
-import { Card } from '../../constants';
+import ChartBlock from '../chart-block/chart-block';
+import { Card, CardStatuses } from '../../constants';
+import { connect } from 'react-redux';
+import { IState } from '../../store/store';
 
-const CardList = ({cards}: Props) => {
+const CardList = ({filteredCards, tabStatus}: Props) => {
+    const isDoneList = tabStatus === CardStatuses.DONE;
     return(
+        <div className={`${isDoneList ? 'done-block' : ''}`}>
         <div className="main-block">
-        {cards.map((el: Card) => (
+        {filteredCards.map((el: Card) => (
         <TaskCard key={el.id} card = {el}
         />
         ))
-}</div>
-      
+        }</div>
+       {isDoneList && <ChartBlock cards={filteredCards}></ChartBlock>}
+        </div>    
     )}
 
-interface Props {
-    cards: Card[]
-}
+    interface OwnProps {
+        tabStatus: string
+    }
+
+    interface StateProps {
+        filteredCards: Card[]
+    }
+
+    type Props = StateProps & OwnProps
+
+    interface State2  {
+        cards: Card[]
+    }
+
+  
+    const mapStateToProps = (state: IState, {tabStatus}: OwnProps): StateProps => ({
+        filteredCards: state.cards.filter((card: Card) => card.status===tabStatus)
+    })
+
+    const mapDispatchToProps = () => ({
+      });
 
 
-
-export default CardList
+export {CardList}
+export default connect<StateProps, {}, OwnProps, IState>(mapStateToProps, mapDispatchToProps)(CardList)
