@@ -23,7 +23,7 @@ const TaskCard = ({card, doneCard, deleteCard}: Props) => {
                 <div className="card-title">{card.title}</div>
                 
                 <div className="card-actions">
-                    {card.status!="done" && 
+                    {card.status!=CardStatuses.DONE && 
                     <>
                     <div className="done-action" onClick={()=>doneCard(card.id)}></div>                    
                     <div className="edit-action" onClick = {() => setEdit(!isEdit)}></div>

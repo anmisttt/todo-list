@@ -1,10 +1,12 @@
 import {createStore} from 'redux';
 import {reducer} from './reducer';
 import {composeWithDevTools} from 'redux-devtools-extension';
+import MocksCards from '../mocks/cards'
 
 const state = localStorage.getItem('cards') 
       ? JSON.parse(localStorage.getItem('cards') || '')
-      : {}
+      : {cards: MocksCards}
+
 
 export const store = createStore(
     reducer,
