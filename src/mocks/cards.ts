@@ -47,4 +47,12 @@ export default [
         'startDate': "2021-05-08T14:13:56.569Z",
         'endDate': "2019-05-08T14:13:56.569Z"
     },
+    {        
+        'id': 7,
+        'title': 'Съездить в Павловск',
+        'description': 'Lorem ipsum dolor sit amet consectetur adipisicing elit. A nobis eos quia recusandae porro omnis. Maxime quibusdam suscipit iure facilis, deserunt odit quod ea fugit architecto, laboriosam labore, nihil enim.',
+        'status': 'In Progress',
+        'startDate': "2021-05-08T14:13:56.569Z",
+        'endDate': "2022-05-08T14:13:56.569Z"
+    },
 ]
