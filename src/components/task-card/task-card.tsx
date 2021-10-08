@@ -4,7 +4,7 @@ import {ActionCreator} from '../../store/action'
 import { Dispatch } from '../../store/store';
 import TaskAddingForm from '../task-adding-form/task-adding-form'
 import {formatDate} from '../../utils/date'
-import {Card} from '../../constants'
+import {Card, CardStatuses} from '../../constants'
 import moment from 'moment'
 import { AnyAction } from '@reduxjs/toolkit';
 
@@ -18,7 +18,7 @@ const TaskCard = ({card, doneCard, deleteCard}: Props) => {
     return (
         <>        
         {isEdit && <TaskAddingForm handleClose={closeEdit} oldCard={card}/>}
-        <div className={`task-card ${(card.status=='DONE') ? `task-card_done`: (card.status=='OVERDUE') ? `task-card_overdue` : ``}`}>
+        <div className={`task-card ${(card.status===CardStatuses.DONE) ? `task-card_done`: (card.status===CardStatuses.OVERDUE) ? `task-card_overdue` : ``}`}>
             <div className="top-part">
                 <div className="card-title">{card.title}</div>
                 

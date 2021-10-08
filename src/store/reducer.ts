@@ -25,7 +25,7 @@ const reducer = (state=initialState, action:PayloadAction<any>) => {
         case ActionType.DONE_CARD:
             let cardDoneIndex = state.cards.findIndex((card) => card.id===action.payload)
             let newCard = state.cards[cardDoneIndex];
-            newCard.status = "done"
+            newCard.status = CardStatuses.DONE
             return {
                 cards: [...state.cards.slice(0,cardDoneIndex), newCard, ...state.cards.slice(cardDoneIndex+1)]
             };
