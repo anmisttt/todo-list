@@ -13,6 +13,7 @@ const CardList = ({filteredCards, tabStatus}: Props) => {
         {filteredCards.map((el: Card) => (
         <TaskCard key={el.id} card = {el}
         />
+        
         ))
         }</div>
        {isDoneList && <ChartBlock cards={filteredCards}></ChartBlock>}
@@ -29,11 +30,7 @@ const CardList = ({filteredCards, tabStatus}: Props) => {
 
     type Props = StateProps & OwnProps
 
-    interface State2  {
-        cards: Card[]
-    }
 
-  
     const mapStateToProps = (state: IState, {tabStatus}: OwnProps): StateProps => ({
         filteredCards: state.cards.filter((card: Card) => card.status===tabStatus)
     })

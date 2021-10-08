@@ -2,10 +2,20 @@ import {createStore} from 'redux';
 import {reducer} from './reducer';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
+const state = localStorage.getItem('cards') 
+      ? JSON.parse(localStorage.getItem('cards') || '')
+      : {}
+
 export const store = createStore(
     reducer,
+    state,
     composeWithDevTools()
 )
+
+store.subscribe(()=>{
+  localStorage.setItem('cards', JSON.stringify(store.getState()))
+})
+
 
 export interface Dispatch<A> {
     <T extends A>(action: T): T

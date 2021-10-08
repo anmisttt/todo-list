@@ -99,7 +99,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): DispatchProps => ({
       dispatch(ActionCreator.createCard(cardData));
     },
     editCard(cardData: Card) {
-        dispatch(ActionCreator.editCard(cardData.id));
+        dispatch(ActionCreator.editCard(cardData));
       }
   });
 

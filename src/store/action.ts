@@ -18,9 +18,9 @@ export const ActionCreator = {
         type: ActionType.DELETE_CARD,
         payload: cardId
     }),
-    editCard: (cardId: number) => ({
+    editCard: (card: Card) => ({
         type: ActionType.EDIT_CARD,
-        payload: cardId
+        payload: card
     }),
     doneCard: (cardId: number) => ({
         type: ActionType.DONE_CARD,

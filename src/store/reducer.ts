@@ -1,12 +1,14 @@
 import {ActionType} from './action'
-import cards from '../mocks/cards'
+import MocksCards from '../mocks/cards'
 import moment from 'moment'
 import {sordDates} from '../utils/date'
 import { CardStatuses } from '../constants'
 import { PayloadAction } from '@reduxjs/toolkit'
 
+
+
 const initialState = {
-    cards: cards
+    cards: MocksCards
 }
 
 const reducer = (state=initialState, action:PayloadAction<any>) => {

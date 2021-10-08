@@ -20,11 +20,17 @@ module.exports = {
             use: {
             loader: 'babel-loader',
             },
+        },
+        {
+            test: /\.(ts|tsx)$/,
+            use: {
+                loader: 'awesome-typescript-loader'
+            },
         }
         ],
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     devtool: 'source-map',
 };
